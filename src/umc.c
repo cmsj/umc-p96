@@ -161,6 +161,7 @@ void usage (int status)
         -m, --margin         margin percentage\n\
         -x, --X11R6          print X11R6 modeline format (default)\n\
         -f, --fb             print fb modeline format\n\
+        -p, --p96            print Picasso 96 mode format\n\
         --help\n\
         --version\n\n");
   }
@@ -1385,6 +1386,59 @@ void print_modeline(UMC_MODELINE *Modeline)
   HSyncPolarity, VSyncPolarity, Doublescan, Interlace);
 }
 
+void print_p96_modeline(UMC_MODELINE *Modeline)
+{
+  double PClock = 0.0;
+  double VClock = 0.0;
+  double HClock = 0.0;
+  char HSyncPolarity[4] = "NO";
+  char VSyncPolarity[4] = "NO";
+  char Doublescan[4] = "NO";
+  char Interlace[4] = "NO";
+  PClock = Modeline->PClock * 1000000.0;
+  if (Modeline->Doublescan == 1)
+  {
+    strcpy(Doublescan, "YES");
+    VClock = PClock / (Modeline->HTotal * 2.0 * Modeline->VTotal);
+    HClock = VClock * Modeline->VTotal * 2.0 / 1000.0;
+  }
+  else if (Modeline->Interlace == 1)
+  {
+    strcpy(Interlace, "YES");
+    VClock = PClock / (Modeline->HTotal * 0.5 * Modeline->VTotal) * 0.5;
+    HClock = 2 * VClock * Modeline->VTotal * 0.5 / 1000.0;
+  }
+  else
+  {
+    VClock = PClock / (Modeline->HTotal * Modeline->VTotal);
+    HClock = VClock * Modeline->VTotal / 1000.0;
+  }
+
+  if (Modeline->HSyncPolarity > 0)
+  {
+    strcpy(HSyncPolarity, "YES");
+  }
+  if (Modeline->VSyncPolarity > 0)
+  {
+    strcpy(VSyncPolarity, "YES");
+  }
+
+  print_modeline(Modeline);
+
+  printf("\n");
+  printf("Picasso96Mode values:\n");
+  printf("  Clock: %3.2f    Interlace: %3s\n", Modeline->PClock, Interlace);
+  printf("                 DoubleScan: %3s\n", Doublescan);
+  printf("\n");
+  printf("  Timings      | horiz. | vert.\n");
+  printf("  ------------------------------\n");
+  printf("  FrameSize    | %6d | %6d\n", Modeline->HTotal, Modeline->VTotal);
+  printf("  BorderSize   |      0 |      0\n");
+  printf("  Position     | %6d | %6d\n", Modeline->HSyncStart - Modeline->HRes, Modeline->VSyncStart - Modeline->VRes);
+  printf("  SyncSize     | %6d | %6d\n", Modeline->HSyncEnd - Modeline->HSyncStart, Modeline->VSyncEnd - Modeline->VSyncStart);
+  printf("  SyncPolarity | %6s | %6s\n", HSyncPolarity, VSyncPolarity);
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -1461,8 +1515,13 @@ int main(int argc, char *argv[])
     {
       Flags = -1;
     }
-    else if ((strcmp (argv[i], "-fb") == 0) ||
-              (strcmp (argv[i], "--fbset") == 0))
+    else if ((strcmp (argv[i], "-p") == 0) ||
+              (strcmp (argv[i], "--p96") == 0))
+    {
+      PrintFormat = 2;
+    }
+    else if ((strcmp (argv[i], "-f") == 0) ||
+              (strcmp (argv[i], "--fb") == 0))
     {
       PrintFormat = 1;
     }
@@ -1931,6 +1990,10 @@ int main(int argc, char *argv[])
     if (PrintFormat == 1)
     {
       print_fb_modeline(Modeline);
+    }
+    else if (PrintFormat == 2)
+    {
+      print_p96_modeline(Modeline);
     }
     else
     {
