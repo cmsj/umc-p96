@@ -1437,6 +1437,7 @@ void print_p96_modeline(UMC_MODELINE *Modeline)
   printf("  Position     | %6d | %6d\n", Modeline->HSyncStart - Modeline->HRes, Modeline->VSyncStart - Modeline->VRes);
   printf("  SyncSize     | %6d | %6d\n", Modeline->HSyncEnd - Modeline->HSyncStart, Modeline->VSyncEnd - Modeline->VSyncStart);
   printf("  SyncPolarity | %6s | %6s\n", HSyncPolarity, VSyncPolarity);
+  printf("     Frequency | %3.fkHz | %4.fHz\n", HClock, VClock);
 }
 
 int main(int argc, char *argv[])
