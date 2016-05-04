@@ -66,6 +66,9 @@ OPTIONS
    -f
    --fb
            Print modeline in fbset format.
+   -p
+   --p96
+           Print mode info in Picasso 96 format.
    --gtf
            Use General Timing Formula. To avoid any parameter conflicts
            always specify this option first. UMC's default calculations are
