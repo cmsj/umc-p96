@@ -1,0 +1,267 @@
+<HTML><HEAD><TITLE>Universal Modeline Calculator</TITLE>
+<a href="http://sourceforge.net"><img src="http://sourceforge.net/sflogo.php?group_id=138133&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></a>
+</HEAD><BODY>
+<H1>UMC</H1>
+Section: User Manuals (1)<BR>Updated: MARCH 2005<BR>
+<A HREF="#index">Index</A> <A HREF="http://sourceforge.net/projects/umc/">Download</A> 
+<HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+umc - universal modeline calculator
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>umc</B>
+
+x y refresh [OPTIONS]
+<BR>
+
+<B>umc </B>
+
+x y hclock [OPTIONS]
+<BR>
+
+<B>umc </B>
+
+x y pclock [OPTIONS]
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>umc</B> is a modeline calculator that fully implements the <B>Coordinated Video 
+Timing</B> and the <B>General Timing Formula</B> spreadsheets published by the 
+Video Electronics Standards Association (<A HREF="http://www.vesa.org">www.vesa.org</A>). 
+Simply input a desired resolution and clock frequency. All clock frequencies must 
+be given in Hz. For a full length, mostly accurate modeline tutorial visit <A HREF="http://lrmc.sourceforge.net">http://lrmc.sourceforge.net</A> 
+<A NAME="lbAE">&nbsp;</A> 
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-d</B><DD>
+
+<DT><B>--doublescan</B><DD>
+
+Calculate a doublescanned modeline.  Doublescanned modes are useful
+for running low resolutions on high resolution monitors, but they can 
+also be used to display low resolutions with a very small scanline,
+popular gaming resolutions like 640x480 and 800x600.  Doublescanned 
+modes are not supported by many video cards.  You should only use this 
+option if you know your video card supports them.
+<DT><B>-i</B><DD>
+
+<DT><B>--interlace</B><DD>
+
+Calculate an interlaced modeline.  Interlaced modes are useful
+for running very high resolutions.  Interlaced modes are not 
+supported by many video cards.  You should only use this option if 
+you know your video card supports them.
+<DT><B>-m</B><I> number</I><DD>
+
+<DT><B>--margin</B>=<I>number</I><DD>
+
+Margin size as a percentage of the resolution (default = 0). All 
+margins are equal percentage wise (i.e. %top = %bottom = %left = %right).
+<DT><B>-x</B><DD>
+
+<DT><B>--X11R6</B><DD>
+
+Print modeline in X11R6 format (default).
+<DT><B>-fb</B><DD>
+
+<DT><B>--fbset</B><DD>
+
+Print modeline in fbset format.
+<DT><B>--gtf</B><DD>
+
+Use General Timing Formula.  UMC's default calculations are 
+equivalent to:
+<BR>
+
+<B>umc x y clock -gtf -f 4 -v 4 [OPTIONS]</B>
+<DT><B>--cvt</B><DD>
+
+Use Coordinated Video Timing.
+<DT><B>--rbt</B><DD>
+
+Use Reduced Blanking Timing.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>ADVANCED OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-v</B><I> number</I><DD>
+
+<DT><B>--vertical-sync</B>=<I>number</I><DD>
+
+Number of lines in vertical sync, UMC = 4, GTF = 3, CVT varies by 
+aspect ratio as follows:
+<BR>
+
+4:3  = 4 lines (default)
+<BR>
+
+16:9 = 5 lines
+<BR>
+
+16:10 = 6 lines
+<BR>
+
+5:4 = 7 lines
+<BR>
+
+15:9 = 7 lines
+<DT><B>-c</B><I> number</I><DD>
+
+<DT><B>--character-cell</B>=<I>number</I><DD>
+
+Number of pixels per character cell (default = 8).
+<DT><B>-p</B><I> number</I><DD>
+
+<DT><B>--pclock-step</B>=<I>number</I><DD>
+
+Pixel clock multiple (UMC default = 0, GTF default = 0, 
+CVT default = 0.25).
+<DT><B>-h</B><I> number</I><DD>
+
+<DT><B>--horizontal-sync</B>=<I>number</I><DD>
+
+Horizontal sync as a percentage of total active (default = 8).
+<DT><B>-f</B><I> number</I><DD>
+
+<DT><B>--vertical-front-porch</B>=<I>number</I><DD>
+
+Number of lines in front porch (UMC default = 4, GTF default = 1, 
+CVT default = 3).
+<DT><B>-b</B><I> number</I><DD>
+
+<DT><B>--vertical-back-porch</B>=<I>number</I><DD>
+
+Minimum number of lines in vertical back porch (default = 6).
+<DT><B>-y</B><I> number</I><DD>
+
+<DT><B>--back-porch-plus-sync</B>=<I>number</I><DD>
+
+Number of microseconds in vertical sync and back porch (default 550). 
+<DT><B>-w</B><I> number</I><DD>
+
+<DT><B>--horizontal-blanking-ticks</B>=<I>number</I><DD>
+
+Number of pixel clock ticks in horizontal blanking time, RBT only 
+(default 160). 
+<DT><B>-s</B><I> number</I><DD>
+
+<DT><B>--horizontal-sync-ticks</B>=<I>number</I><DD>
+
+Number of pixel clock ticks in horizontal sync, RBT only 
+(default 32). 
+<DT><B>-t</B><I> number</I><DD>
+
+<DT><B>--vertical-blanking-time</B>=<I>number</I><DD>
+
+Minimum vertical blanking time in microseconds, RBT only (default = 460)
+<DT><B>-M</B><I> number</I><DD>
+
+<DT><B>--gradient</B>=<I>number</I><DD>
+
+The value of M used to calculate the horizontal blanking time 
+(default = 600). 
+<DT><B>-C</B><I> number</I><DD>
+
+<DT><B>--offset</B>=<I>number</I><DD>
+
+The value of C used to calculate the horizontal blanking time 
+(default = 40). 
+<DT><B>-K</B><I> number</I><DD>
+
+<DT><B>--scaling-factor</B>=<I>number</I><DD>
+
+The value of K used to calculate the horizontal blanking time 
+(default = 128). 
+<DT><B>-J</B><I> number</I><DD>
+
+<DT><B>--scale-factor-weight</B>=<I>number</I><DD>
+
+The value of J used to calculate the horizontal blanking time 
+(default = 20). 
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<DL COMPACT>
+<DT><B>&nbsp;umc 1280 960 72</B><DD>
+Calculate a modeline for a 1280x960 resolution running at a refresh 
+rate of 72Hz.  Print the modeline in X11 format. 
+<DT><B>&nbsp;umc 640 480 60 -d</B><DD>
+Calculate a modeline for a 640x480 resolution running at a refresh 
+rate of 60Hz, doublescanned.  Print the modeline in X11 format. 
+<DT><B>&nbsp;umc 1280 960 31500 -i</B><DD>
+Calculate a modeline for a 1280x960 resolution running at a 
+horizontal clock of 31.5kHz, interlaced. Print the modeline in X11 
+format. 
+<DT><B>&nbsp;umc 1280 960 125000000</B><DD>
+Calculate a modeline for a 1280x960 resolution running at a pixel
+clock of 125mHz. Print the modeline in X11 format. 
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Written by Des Jones.
+<A NAME="lbAI">&nbsp;</A>
+<H2>BUGS THAT AREN'T BUGS</H2>
+
+Doublescanned calculations are not formally laid out in either
+the GTF or CVT worksheets.  Though easily added, for consistency purposes
+the default vertical front porch and sync times were changed to be
+a multiple of 2.  Consequently, umc calculations differ ever 
+so slightly from VESA's.  See the --gtf and --cvt options above for 
+unmolested calculations.  Only the GTF supports horizontal clock and 
+pixel clock driven calculations.  Clock frequencies must always be 
+given in Hz, never in kHz or mHz.
+<A NAME="lbAJ">&nbsp;</A>
+<H2>BUGS</H2>
+
+The fbset modeline format has never been tested.  It may not work.
+Other bugs may be reported at <A HREF="http://sourceforge.net/projects/umc/">http://sourceforge.net/projects/umc/</A>
+<A NAME="lbAK">&nbsp;</A>
+<H2>COPYRIGHT</H2>
+
+Copyright 2005 Des Jones.
+<BR>
+
+This is free software; see the source for copying conditions.  There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR  A  PARTICULAR
+PURPOSE.
+<A NAME="lbAL">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="http://lrmc.sourceforge.net/">lrmc</A></B>(1),
+
+<B><A HREF="http://advancemame.sourceforge.net/">advv</A></B>(1),
+
+<B><A HREF="http://gtf.sourceforge.net/">gtf</A></B>(1)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">ADVANCED OPTIONS</A><DD>
+<DT><A HREF="#lbAG">EXAMPLES</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+<DT><A HREF="#lbAI">BUGS THAT AREN'T BUGS</A><DD>
+<DT><A HREF="#lbAJ">BUGS</A><DD>
+<DT><A HREF="#lbAK">COPYRIGHT</A><DD>
+<DT><A HREF="#lbAL">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://www.oac.uci.edu/indiv/ehood/man2html.html">man2html</A>,
+using the manual pages.<BR>
+Time: 11:37:45 GMT, June 26, 2005
+</BODY>
+</HTML>

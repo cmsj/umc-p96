@@ -1,0 +1,202 @@
+.\" Process this file with
+.\" groff -man -Tascii umc.1
+.\"
+.TH UMC 1 "MARCH 2005" Unix "User Manuals"
+.SH NAME
+umc \- universal modeline calculator
+.SH SYNOPSIS
+.B umc
+x y refresh [OPTIONS]
+.br
+.B umc 
+x y hclock [OPTIONS]
+.br
+.B umc 
+x y pclock [OPTIONS]
+.SH DESCRIPTION
+.B umc
+is a modeline calculator that fully implements the \fBCoordinated
+Video Timing\fR and the \fBGeneral Timing Formula\fR spreadsheets published 
+by the Video Electronics Standards Association (www.vesa.org).  
+Simply input a desired resolution and clock frequency.  All clock 
+frequencies must be given in Hz.  For a full length, mostly accurate 
+modeline tutorial visit http://lrmc.sourceforge.net
+.SH OPTIONS
+.IP "\fB\-d\fR"
+.PD 0
+.IP "\fB\-\-doublescan\fR"
+.PD
+Calculate a doublescanned modeline.  Doublescanned modes are useful
+for running low resolutions on high resolution monitors, but they can 
+also be used to display low resolutions with a very small scanline,
+popular gaming resolutions like 640x480 and 800x600.  Doublescanned 
+modes are not supported by many video cards.  You should only use this 
+option if you know your video card supports them.
+.IP "\fB\-i\fR"
+.PD 0
+.IP "\fB\-\-interlace\fR"
+.PD
+Calculate an interlaced modeline.  Interlaced modes are useful
+for running very high resolutions.  Interlaced modes are not 
+supported by many video cards.  You should only use this option if 
+you know your video card supports them.
+.IP "\fB\-m\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-margin\fR=\fInumber\fR"
+.PD
+Margin size as a percentage of the resolution (default = 0). All 
+margins are equal percentage wise (i.e. %top = %bottom = %left = %right).
+.IP "\fB\-x\fR"
+.PD 0
+.IP "\fB\-\-X11R6\fR"
+.PD
+Print modeline in X11R6 format (default).
+.IP "\fB\-fb\fR"
+.PD 0
+.IP "\fB\-\-fbset\fR"
+.PD
+Print modeline in fbset format.
+.IP "\fB\-\-gtf\fR"
+.PD
+Use General Timing Formula.  UMC's default calculations are 
+equivalent to:
+.br
+\fBumc x y clock -gtf -f 4 -v 4 [OPTIONS]\fR
+.IP "\fB\-\-cvt\fR"
+.PD
+Use Coordinated Video Timing.
+.IP "\fB\-\-rbt\fR"
+.PD
+Use Reduced Blanking Timing.
+.SH ADVANCED OPTIONS
+.IP "\fB\-v\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-vertical-sync\fR=\fInumber\fR"
+.PD
+Number of lines in vertical sync, UMC = 4, GTF = 3, CVT varies by 
+aspect ratio as follows:
+.br
+4:3  = 4 lines (default)
+.br
+16:9 = 5 lines
+.br
+16:10 = 6 lines
+.br
+5:4 = 7 lines
+.br
+15:9 = 7 lines
+.IP "\fB\-c\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-character-cell\fR=\fInumber\fR"
+.PD
+Number of pixels per character cell (default = 8).
+.IP "\fB\-p\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-pclock-step\fR=\fInumber\fR"
+.PD
+Pixel clock multiple (UMC default = 0, GTF default = 0, 
+CVT default = 0.25).
+.IP "\fB\-h\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-horizontal-sync\fR=\fInumber\fR"
+.PD
+Horizontal sync as a percentage of total active (default = 8).
+.IP "\fB\-f\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-vertical-front-porch\fR=\fInumber\fR"
+.PD
+Number of lines in front porch (UMC default = 4, GTF default = 1, 
+CVT default = 3).
+.IP "\fB\-b\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-vertical-back-porch\fR=\fInumber\fR"
+.PD
+Minimum number of lines in vertical back porch (default = 6).
+.IP "\fB\-y\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-back-porch-plus-sync\fR=\fInumber\fR"
+.PD
+Number of microseconds in vertical sync and back porch (default 550). 
+.IP "\fB\-w\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-horizontal-blanking-ticks\fR=\fInumber\fR"
+.PD
+Number of pixel clock ticks in horizontal blanking time, RBT only 
+(default 160). 
+.IP "\fB\-s\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-horizontal-sync-ticks\fR=\fInumber\fR"
+.PD
+Number of pixel clock ticks in horizontal sync, RBT only 
+(default 32). 
+.IP "\fB\-t\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-vertical-blanking-time\fR=\fInumber\fR"
+.PD
+Minimum vertical blanking time in microseconds, RBT only (default = 460)
+.IP "\fB\-M\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-gradient\fR=\fInumber\fR"
+.PD
+The value of M used to calculate the horizontal blanking time 
+(default = 600). 
+.IP "\fB\-C\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-offset\fR=\fInumber\fR"
+.PD
+The value of C used to calculate the horizontal blanking time 
+(default = 40). 
+.IP "\fB\-K\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-scaling-factor\fR=\fInumber\fR"
+.PD
+The value of K used to calculate the horizontal blanking time 
+(default = 128). 
+.IP "\fB\-J\fR\fI number\fR"
+.PD 0
+.IP "\fB\-\-scale-factor-weight\fR=\fInumber\fR"
+.PD
+The value of J used to calculate the horizontal blanking time 
+(default = 20). 
+.SH EXAMPLES
+.TP
+\fB\ umc 1280 960 72\fR
+Calculate a modeline for a 1280x960 resolution running at a refresh 
+rate of 72Hz.  Print the modeline in X11 format. 
+.TP
+\fB\ umc 640 480 60 -d\fR
+Calculate a modeline for a 640x480 resolution running at a refresh 
+rate of 60Hz, doublescanned.  Print the modeline in X11 format. 
+.TP
+\fB\ umc 1280 960 31500 -i\fR
+Calculate a modeline for a 1280x960 resolution running at a 
+horizontal clock of 31.5kHz, interlaced. Print the modeline in X11 
+format. 
+.TP
+\fB\ umc 1280 960 125000000\fR
+Calculate a modeline for a 1280x960 resolution running at a pixel
+clock of 125mHz. Print the modeline in X11 format. 
+.SH AUTHOR
+Written by Des Jones.
+.SH BUGS THAT AREN'T BUGS
+Doublescanned calculations are not formally laid out in either
+the GTF or CVT worksheets.  Though easily added, for consistency purposes
+the default vertical front porch and sync times were changed to be
+a multiple of 2.  Consequently, umc calculations differ ever 
+so slightly from VESA's.  See the --gtf and --cvt options above for 
+unmolested calculations.  Only the GTF supports horizontal clock and 
+pixel clock driven calculations.  Clock frequencies must always be 
+given in Hz, never in kHz or mHz.
+.SH BUGS
+The fbset modeline format has never been tested.  It may not work.
+Other bugs may be reported at http://sourceforge.net/projects/umc/
+.SH COPYRIGHT
+Copyright 2005 Des Jones.
+.br
+This is free software; see the source for copying conditions.  There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR  A  PARTICULAR
+PURPOSE.
+.SH "SEE ALSO"
+.BR lrmc (1),
+.BR advv (1),
+.BR gtf (1)
