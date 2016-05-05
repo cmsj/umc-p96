@@ -136,17 +136,17 @@ EXAMPLES
 
     umc 1280 960 72
            Calculate a modeline for a 1280x960 resolution running at a
-           refresh rate of 72Hz. Print the modeline in X11 format.
+           refresh rate of 72Hz. Print the modeline in Picasso96 format.
     umc 640 480 60 -d
            Calculate a modeline for a 640x480 resolution running at a refresh
-           rate of 60Hz, doublescanned. Print the modeline in X11 format.
+           rate of 60Hz, doublescanned. Print the modeline in Picasso96 format.
     umc 1280 960 31500 -i
            Calculate a modeline for a 1280x960 resolution running at a
-           horizontal clock of 31.5kHz, interlaced. Print the modeline in X11
-           format.
+           horizontal clock of 31.5kHz, interlaced. Print the modeline in
+           Picasso96 format.
     umc 1280 960 125000000
            Calculate a modeline for a 1280x960 resolution running at a pixel
-           clock of 125mHz. Print the modeline in X11 format.
+           clock of 125mHz. Print the modeline in Picasso96 format.
     
 
 AUTHOR
