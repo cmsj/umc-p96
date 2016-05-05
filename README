@@ -1,3 +1,11 @@
+Short:        Calculates Picasso96 screen modes
+Uploader:     cmsj@tenshu.net (Chris Jones)
+Author:       cmsj@tenshu.net (Chris Jones)
+Type:         util/cli
+Version:      0.2
+Architecture: m68k-amigaos >= 3.1
+Distribution: Aminet
+
 
 NAME
 
