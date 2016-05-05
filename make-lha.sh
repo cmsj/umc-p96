@@ -3,21 +3,22 @@
 set -eux
 
 ARCHIVE="umc.lha"
+CURDIR="$(basename $(pwd))"
 
 cd ..
 rm -f "${ARCHIVE}"
-cp umc/Readme umc.readme
-cp umc/.folder_info umc.info
+cp "${CURDIR}/README" umc.readme
+cp "${CURDIR}/.folder_info" umc.info
 
 rm -f umc.lha
 
 lha -ao5 ${ARCHIVE} \
-	umc/umc \
-	umc/umc.c \
-	umc/README \
-	umc/README.info \
-	umc/COPYING \
-	umc/Makefile \
+	"${CURDIR}/umc" \
+	"${CURDIR}/umc.c" \
+	"${CURDIR}/README" \
+	"${CURDIR}/README.info" \
+	"${CURDIR}/COPYING" \
+	"${CURDIR}/Makefile" \
 	umc.info
 
 echo ""

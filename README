@@ -18,6 +18,10 @@ DESCRIPTION
    For a full length, mostly accurate modeline tutorial visit
    http://lrmc.sourceforge.net  
 
+INSTALLATION
+
+   Copy the umc executable somewhere like C:
+
 OPTIONS
 
    -d
@@ -147,7 +151,7 @@ EXAMPLES
 
 AUTHOR
 
-   Written by Des Jones.  
+   Written by Des Jones. Amiga port and Picasso96 support by Chris Jones.
 
 BUGS THAT AREN'T BUGS
 
@@ -176,34 +180,3 @@ SEE ALSO
    lrmc(1), advv(1), gtf(1)
 
      ----------------------------------------------------------------------
-
-    
-
-Index
-
-   NAME
-
-   SYNOPSIS
-
-   DESCRIPTION
-
-   OPTIONS
-
-   ADVANCED OPTIONS
-
-   EXAMPLES
-
-   AUTHOR
-
-   BUGS THAT AREN'T BUGS
-
-   BUGS
-
-   COPYRIGHT
-
-   SEE ALSO
-
-     ----------------------------------------------------------------------
-
-   This document was created by man2html, using the manual pages.
-   Time: 04:13:41 GMT, May 14, 2005
