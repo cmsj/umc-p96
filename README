@@ -1,14 +1,3 @@
-   SourceForge.net Logo
-
-                                      UMC
-
-   Section: User Manuals (1)
-   Updated: MARCH 2005
-   Index Download
-
-     ----------------------------------------------------------------------
-
-    
 
 NAME
 
@@ -62,13 +51,13 @@ OPTIONS
            15:9 = 7 lines
    -x
    --X11R6
-           Print modeline in X11R6 format (default).
+           Print modeline in X11R6 format.
    -f
    --fb
            Print modeline in fbset format.
    -p
    --p96
-           Print mode info in Picasso 96 format.
+           Print mode info in Picasso 96 format (default).
    --gtf
            Use General Timing Formula. To avoid any parameter conflicts
            always specify this option first. UMC's default calculations are
@@ -82,6 +71,8 @@ OPTIONS
    --rbt
            Use Reduced Blanking Timing. To avoid any parameter conflicts
            always specify this option first.
+           This option is particularly useful for video cards which are unable
+           to drive high pixel clocks (e.g. Vampire cards)
     
 
 ADVANCED OPTIONS
