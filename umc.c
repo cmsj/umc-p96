@@ -20,10 +20,11 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-
+/* cmsj - This isn't even used
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1437,7 +1438,7 @@ void print_p96_modeline(UMC_MODELINE *Modeline)
   printf("  Position     | %6d | %6d\n", Modeline->HSyncStart - Modeline->HRes, Modeline->VSyncStart - Modeline->VRes);
   printf("  SyncSize     | %6d | %6d\n", Modeline->HSyncEnd - Modeline->HSyncStart, Modeline->VSyncEnd - Modeline->VSyncStart);
   printf("  SyncPolarity | %6s | %6s\n", HSyncPolarity, VSyncPolarity);
-  printf("     Frequency | %3.fkHz | %4.fHz\n", HClock, VClock);
+  printf("     Frequency | %3.0fkHz | %4.0fHz\n", HClock, VClock);
 }
 
 int main(int argc, char *argv[])
@@ -1446,7 +1447,7 @@ int main(int argc, char *argv[])
   /* initialize variables */
   int i = 4;                 //counter for *argv[] loop
   int Calculator = 0;        //which calculator to use
-  int PrintFormat = 0;       //which print format to use
+  int PrintFormat = 2;       //which print format to use
   double HRes = 0.0;         //input: horizontal resolution
   double VRes = 0.0;         //input: vertical resolution
   double Clock = 0.0;        //input: clock in Hz
@@ -1455,14 +1456,14 @@ int main(int argc, char *argv[])
   double VSyncWidth = -1.0;   //vertical sync width
 
 
+  /* declare and initialize UMC_MODELINE return pointer */
+  UMC_MODELINE *Modeline = NULL;
+
+
   /* declare and initialize input display */
   UMC_DISPLAY Display = UMC_CVT;
   Display.VFrontPorch = 4.0;  //make vertical front porch doublescan friendly
   Display.PClockStep = 0.0;   //gtf default
-
-
-  /* declare and initialize UMC_MODELINE return pointer */
-  UMC_MODELINE *Modeline = NULL;
 
 
   /* calling program */
